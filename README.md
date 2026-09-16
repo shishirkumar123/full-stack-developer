@@ -1,29 +1,12 @@
-# full-stack-developer
-Demonstration of Sprinboot Application with code coverage
+This is regarding return payment reprocessing design created by Bhanu.
 
-I have implemented a simple rest API which can be used to get list of an entity called 'Privileges'.  The application runs fine. Once you run the main method, you can go to the browser(or postman) and hit the URL 'http://<machine-name>:8080/api/v1/privileges', you will see the result as shown below -
+Legacy analysis ticket - SSPP-11379.
+Modern ticket - SSPP-11614.
 
-[
-    {
-        "privilegeId": 1,
-        "privilegeName": "Add User",
-        "privilegeDescription": "Adds a new User"
-    },
-    {
-        "privilegeId": 2,
-        "privilegeName": "Delete User",
-        "privilegeDescription": "Deletes a User"
-    },
-    {
-        "privilegeId": 3,
-        "privilegeName": "Modify User",
-        "privilegeDescription": "Modifies a User"
-    },
-    {
-        "privilegeId": 4,
-        "privilegeName": "View Users",
-        "privilegeDescription": "Shows the list of all users"
-    }
-]
+There is a gap between how legacy behaves and how the modern flow is designed.
 
-I have done the code coverage for one class only(FullStackApplicationTests) to demonstrate how it needs to be done. 
+Legacy will not assess an NSF fee until the return has actually posted (the day-after rule). In the modern flow, Return Payments Processor fires as soon as the ACH return event arrives — this difference could result in an NSF fee being charged to the customer prematurely.
+
+In order to align with the legacy behavior, I recommend the following change: the initial event-driven consumption from Kafka (matching and persisting the return record) should remain unchanged. Only the NSF fee calculation and assessment step should move to a separate, non-event-driven process. Return Processor should expose an API that identifies eligible return records (based on the day-after posting rule) and triggers NSF fee calculation for them. This API should be invoked by a JAMS job scheduled once a day, around 4 a.m., matching the legacy schedule.
+
+Please let me know your thoughts.
