@@ -1,12 +1,25 @@
-This is regarding return payment reprocessing design created by Bhanu.
+Fix: Convert customer identifier format for unmatched return payments (partner service ↔ return service)
 
-Legacy analysis ticket - SSPP-11379.
-Modern ticket - SSPP-11614.
+Background
 
-There is a gap between how legacy behaves and how the modern flow is designed.
+SSPP-14443 identified that INDIVIDUAL_IDENTIFIER gets corrupted for unmatched return payments — the return file from Fiserv carries the customer ID in Fiserv's alphanumeric format, but no conversion to the modern UUID format happens before the value is published/persisted, resulting in an incorrect value in both the Unmatched Kafka topic and legacy tables.
 
-Legacy will not assess an NSF fee until the return has actually posted (the day-after rule). In the modern flow, Return Payments Processor fires as soon as the ACH return event arrives — this difference could result in an NSF fee being charged to the customer prematurely.
+Root Cause
 
-In order to align with the legacy behavior, I recommend the following change: the initial event-driven consumption from Kafka (matching and persisting the return record) should remain unchanged. Only the NSF fee calculation and assessment step should move to a separate, non-event-driven process. Return Processor should expose an API that identifies eligible return records (based on the day-after posting rule) and triggers NSF fee calculation for them. This API should be invoked by a JAMS job scheduled once a day, around 4 a.m., matching the legacy schedule.
+No identifier-format conversion currently exists in the unmatched-payment path. The alphanumeric (legacy/Fiserv) customer ID is passed through unchanged, when a UUID (modern) format is expected downstream.
 
-Please let me know your thoughts.
+Proposed Fix
+
+Two separate conversions, in two separate services:
+
+ach-payments-service-partner (on unmatched return files only):
+Look up the alphanumeric customer ID in system_linkage table
+If found: convert to the modern UUID and set it in the existing Kafka payload field before publishing
+If not found: send the alphanumeric value as-is, unconverted
+return-payment-processor-service (on consuming unmatched events):
+If the received value is alphanumeric (conversion didn't happen upstream): ignore it
+If the received value is a UUID: convert modern → legacy format using the Hazelcast map (CIAM), which holds the modern-to-legacy customer ID mapping, before sending downstream
+
+Scope
+
+Unmatched case only. Matched case is confirmed working correctly today — no change needed there.
