@@ -1,0 +1,355 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="NSF Fee Calculation Flow (v2 - updated)" id="0">
+    <mxGraphModel dx="899" dy="378" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3980" pageHeight="1230" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=18;fontStyle=1;align=left;" value="NSF Fee Calculation Flow (v2) — UPDATED from original architect diagram with cc-fee-service / fee-processor code findings + redesigned JAMS trigger" vertex="1">
+          <mxGeometry height="26" width="2200" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=11;fontStyle=2;align=left;fontColor=#666666;" value="Combines the original architect-provided sequence diagram (fee calculation + Fiserv Optis round trip) with confirmed code findings from cc-fee-service and fee-processor, and the agreed redesign moving NSF assessment to a JAMS-triggered, cycle-date-gated batch (replacing the original event-driven trigger)." vertex="1">
+          <mxGeometry height="34" width="2200" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="l0" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;verticalAlign=middle;" value="JAMS Job&#xa;(NSF Fee Assessment, runs on account&#39;s&#xa;cycle date — matches legacy)" vertex="1">
+          <mxGeometry height="100" width="220" x="40" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l0line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="210" as="sourcePoint" />
+            <mxPoint x="150" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Return Payments Processor&#xa;(return-payment-processor-service)" vertex="1">
+          <mxGeometry height="100" width="220" x="300" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l1line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="210" as="sourcePoint" />
+            <mxPoint x="410" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB: NSF_FEE_JOURNAL" vertex="1">
+          <mxGeometry height="100" width="220" x="560" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l2line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="210" as="sourcePoint" />
+            <mxPoint x="670" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Credit One / Microservices&#xa;CreditAccount" vertex="1">
+          <mxGeometry height="100" width="220" x="820" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l3line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="930" y="210" as="sourcePoint" />
+            <mxPoint x="930" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Credit One / Microservices&#xa;Pricing Management Service" vertex="1">
+          <mxGeometry height="100" width="220" x="1080" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l4line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1190" y="210" as="sourcePoint" />
+            <mxPoint x="1190" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="cc-fee-service&#xa;(Credit Card Fee Service)" vertex="1">
+          <mxGeometry height="100" width="220" x="1340" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l5line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="210" as="sourcePoint" />
+            <mxPoint x="1450" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: ALL_CC_ACCOUNT_FEE_REQUEST" vertex="1">
+          <mxGeometry height="100" width="220" x="1600" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l6line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1710" y="210" as="sourcePoint" />
+            <mxPoint x="1710" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: CC_ACCOUNT_ALL_FEE" vertex="1">
+          <mxGeometry height="100" width="220" x="1860" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l7line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1970" y="210" as="sourcePoint" />
+            <mxPoint x="1970" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="fee-processor&#xa;(Credit Card Fee Processor)" vertex="1">
+          <mxGeometry height="100" width="220" x="2120" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l8line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2230" y="210" as="sourcePoint" />
+            <mxPoint x="2230" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: ALL_CC_ACCOUNT_TRANSACTION_REQUESTS" vertex="1">
+          <mxGeometry height="100" width="220" x="2380" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l9line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2490" y="210" as="sourcePoint" />
+            <mxPoint x="2490" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Credit Card Transactions Service&#xa;(code NOT verified)" vertex="1">
+          <mxGeometry height="100" width="220" x="2640" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l10line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2750" y="210" as="sourcePoint" />
+            <mxPoint x="2750" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: FIN_TRANS_FISERV_OPTIS_CARD_TRANS&#xa;(NOT verified)" vertex="1">
+          <mxGeometry height="100" width="220" x="2900" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l11line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3010" y="210" as="sourcePoint" />
+            <mxPoint x="3010" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Fiserv Optis Partner (external)" vertex="1">
+          <mxGeometry height="100" width="220" x="3160" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l12line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3270" y="210" as="sourcePoint" />
+            <mxPoint x="3270" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: FISERV_OPTIS_FIN_TRANS_TRANS_STATUS" vertex="1">
+          <mxGeometry height="100" width="220" x="3420" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l13line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3530" y="210" as="sourcePoint" />
+            <mxPoint x="3530" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: CC_ACCOUNT_ALL_TRANSACTION_STATUS" vertex="1">
+          <mxGeometry height="100" width="220" x="3680" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l14line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3790" y="210" as="sourcePoint" />
+            <mxPoint x="3790" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s0" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="1. Invoke NSF eligibility/calculation API&amp;nbsp;&lt;div&gt;(runs on account&#39;s cycle date)&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="229" as="sourcePoint" />
+            <mxPoint x="410" y="229" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s1" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="2. Query eligible records (cycle date rule, matches legacy)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="242" as="sourcePoint" />
+            <mxPoint x="670" y="242" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s2" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="3. if matchStatus=&quot;MATCHED&quot; and transactionType=CreditCardPayment">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="274" as="sourcePoint" />
+            <mxPoint x="450" y="274" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s3" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="4. Request Details (cycleCode, Account Status, Balance, Late Fee)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="306" as="sourcePoint" />
+            <mxPoint x="930" y="306" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s4" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="5. Receive Details">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="930" y="338" as="sourcePoint" />
+            <mxPoint x="410" y="338" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s5" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="6. Request Details (pricingStrategyCode, domainID)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="370" as="sourcePoint" />
+            <mxPoint x="930" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s6" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="7. Receive Details">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="930" y="402" as="sourcePoint" />
+            <mxPoint x="410" y="402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="8. Request Details (firstReturnCheckFee, returnCheckFee)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="434" as="sourcePoint" />
+            <mxPoint x="1190" y="434" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s8" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="9. Receive Details">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1190" y="466" as="sourcePoint" />
+            <mxPoint x="410" y="466" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s9" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="10. Request Fee records (GET /fees)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="498" as="sourcePoint" />
+            <mxPoint x="1450" y="498" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s10" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="11. Receive Fee records">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="530" as="sourcePoint" />
+            <mxPoint x="410" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s11" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="12. Calculate NSF Fee">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="562" as="sourcePoint" />
+            <mxPoint x="450" y="562" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s12" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="13. Persist All Details">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="594" as="sourcePoint" />
+            <mxPoint x="670" y="594" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s13" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="14. Send NSF Fee request (feeCategory=RETURNED_PAYMENT_FEE)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="626" as="sourcePoint" />
+            <mxPoint x="1710" y="626" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s14" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="15. Consume Fee request">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1710" y="658" as="sourcePoint" />
+            <mxPoint x="1450" y="658" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s15" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="16. Validate feeCategory whitelist + individualUniqueId; save current_status=REQUESTED (hardcoded)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="690" as="sourcePoint" />
+            <mxPoint x="1490" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s16" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="17a. Publish Fee record (parallel)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="722" as="sourcePoint" />
+            <mxPoint x="1970" y="722" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s17" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="17b. Publish transaction request (parallel)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="754" as="sourcePoint" />
+            <mxPoint x="2490" y="754" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s18" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="18. Consume Fee record (WDET pass-through / DMON sets UNBILLED)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1970" y="786" as="sourcePoint" />
+            <mxPoint x="2230" y="786" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s19" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="19. Consume transaction request (NOT verified)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2490" y="818" as="sourcePoint" />
+            <mxPoint x="2750" y="818" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s20" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="20. Send request (NOT verified)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2750" y="850" as="sourcePoint" />
+            <mxPoint x="3010" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s21" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="21. Consume request (NOT verified)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3010" y="882" as="sourcePoint" />
+            <mxPoint x="3270" y="882" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s22" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="22. Sends Acknowledgment">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3270" y="914" as="sourcePoint" />
+            <mxPoint x="3530" y="914" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s23" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="23. Relay via Credit Card Transactions Service (mechanics NOT verified) → Publish transaction status">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3530" y="946" as="sourcePoint" />
+            <mxPoint x="3790" y="946" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s24" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="24. Consume Fee Status (FeeStatusConsumer: REQUESTED→COMPLETED / PENDING→terminal)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3790" y="978" as="sourcePoint" />
+            <mxPoint x="2230" y="978" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="openitems" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;verticalAlign=top;fontSize=9;spacing=6;dashed=1;fontStyle=2;" value="OPEN ITEMS (v2, updated — confirmed via code review of cc-fee-service and fee-processor):&#xa;- Steps 19-23 (Credit Card Transactions Service through Fiserv Optis Partner) remain UNVERIFIED — no code has been reviewed for this service; shown as previously mapped from the original architect diagram / meeting transcript only.&#xa;- Return Payments Processor ALSO has a confirmed, real Kafka listener on CC_ACCOUNT_ALL_FEE (FeeTransactionKafkaConsumer) that is not shown as a distinct step here — whether it ever receives more than the single initial REQUESTED-status message published at step 17a is UNRESOLVED. This is the key remaining gap in understanding how (or whether) Return Payments Processor ever learns the fee&#39;s FINAL settled status.&#xa;- Step 10 (GET /fees) hits the same query gap discussed separately with the accounts team: the default filter requires current_status=POSTED AND transaction_status IN (BILLED, UNBILLED) — and fee-processor&#39;s real-time status pipeline cannot produce that exact combination on its own (see Fee_Status_Lifecycle_StateChart_v1). UNBILLED is only set via a DMON-type event whose true source is still unconfirmed.&#xa;- The eligibility gate at steps 1-2 now reflects the proposed redesign (JAMS-triggered, cycle-date-gated) agreed with Oleg/Arvil Wright, replacing the original event-driven trigger shown in the architect&#39;s source diagram — this is a DESIGN CHANGE, not yet implemented, tracked separately from SSPP-11614.&#xa;- feeCategory whitelist (step 16) currently only allows EXPRESS_PAYMENT_FEE in code; adding RETURNED_PAYMENT_FEE is an in-progress fix on the cc-fee-service side, separate from any JSON-schema-only ticket." vertex="1">
+          <mxGeometry height="160" width="3900" x="40" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="act_150" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="145" y="221" as="geometry" />
+        </mxCell>
+        <mxCell id="act_410" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="432" width="10" x="405" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="act_670" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="368" width="10" x="665" y="234" as="geometry" />
+        </mxCell>
+        <mxCell id="act_450" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="304" width="10" x="445" y="266" as="geometry" />
+        </mxCell>
+        <mxCell id="act_930" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="112" width="10" x="925" y="298" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1190" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="48" width="10" x="1185" y="426" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1450" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="272" width="10" x="1445" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1710" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="48" width="10" x="1705" y="618" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1490" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="1485" y="682" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1970" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="80" width="10" x="1965" y="714" as="geometry" />
+        </mxCell>
+        <mxCell id="act_2490" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="80" width="10" x="2485" y="746" as="geometry" />
+        </mxCell>
+        <mxCell id="act_2230" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="208" width="10" x="2225" y="778" as="geometry" />
+        </mxCell>
+        <mxCell id="act_2750" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="48" width="10" x="2745" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3010" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="48" width="10" x="3005" y="842" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3270" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="48" width="10" x="3265" y="874" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3530" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="48" width="10" x="3525" y="906" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3790" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="48" width="10" x="3785" y="938" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

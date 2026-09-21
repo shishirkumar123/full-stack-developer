@@ -1,0 +1,358 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Return Payment - Full End to End (v3, NSF calc collapsed to SSPP-11614) " id="0">
+    <mxGraphModel dx="860" dy="362" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4220" pageHeight="848" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="Return Payment - Full End to End Flow (v3) - NSF calculation collapsed to SSPP-11614 reference; unmatched flow includes Kafka Connector -&gt; ODS_STAGE" vertex="1">
+          <mxGeometry height="24" width="2000" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="l0" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Fiserv / ACH Partner (external)" vertex="1">
+          <mxGeometry height="90" width="200" x="40" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l0line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="160" as="sourcePoint" />
+            <mxPoint x="140" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="S3 Bucket" vertex="1">
+          <mxGeometry height="90" width="200" x="270" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l1line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="160" as="sourcePoint" />
+            <mxPoint x="370" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="ach-payments-service-partner" vertex="1">
+          <mxGeometry height="90" width="200" x="500" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l2line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="160" as="sourcePoint" />
+            <mxPoint x="600" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB: ach_fiserv.payment_request" vertex="1">
+          <mxGeometry height="90" width="200" x="730" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l3line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="830" y="160" as="sourcePoint" />
+            <mxPoint x="830" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka:&lt;br&gt;DEBIT_ACH_TRANSACTIONS_ALL_&lt;div&gt;RETURN_PAYMENT_EVENTS&lt;br&gt;(unmatched)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="960" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l4line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1060" y="160" as="sourcePoint" />
+            <mxPoint x="1060" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka:&lt;br&gt;DEBIT_ACH_PARTNERS_ALL_&lt;div&gt;RETURN_PAYMENT_EVENTS&lt;br&gt;(matched)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1186" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l5line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="160" as="sourcePoint" />
+            <mxPoint x="1290" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="notel4" parent="1" style="text;html=1;fontSize=8;fontStyle=2;align=center;fontColor=#b85450;" value="(names to be verified)" vertex="1">
+          <mxGeometry height="16" width="200" x="960" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="notel5" parent="1" style="text;html=1;fontSize=8;fontStyle=2;align=center;fontColor=#b85450;" value="(names to be verified)" vertex="1">
+          <mxGeometry height="16" width="200" x="1186" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Return Payments Processor&#xa;(return-payment-processor-service)" vertex="1">
+          <mxGeometry height="90" width="200" x="1420" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l6line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1520" y="160" as="sourcePoint" />
+            <mxPoint x="1520" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB: returned_payments.&#xa;unmatched_payment_transaction" vertex="1">
+          <mxGeometry height="90" width="200" x="1650" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l7line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1750" y="160" as="sourcePoint" />
+            <mxPoint x="1750" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: PAYMENTSYNC_LEGACYSERVICE_&lt;div&gt;ACH_RETURN_UNMATCH&lt;br&gt;(On Prem)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1880" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l8line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980" y="160" as="sourcePoint" />
+            <mxPoint x="1980" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=9;verticalAlign=middle;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;lv1-cfk-sit-jdbcoracle-sink-connector-&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;modern-ach-return_unmatched-data-&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;payment-1&lt;/span&gt;&lt;/div&gt;(Kafka Connector)" vertex="1">
+          <mxGeometry height="90" width="200" x="2110" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l9line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2210" y="160" as="sourcePoint" />
+            <mxPoint x="2210" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB: ODS_STG.STAGE_MODERN_&lt;div&gt;ACH_RETURN_UNMATCH&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="2340" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l10line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2440" y="160" as="sourcePoint" />
+            <mxPoint x="2440" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l10b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB:&amp;nbsp;ACH.ACH_QUEUED_TRANSACTION&lt;div&gt;(Final Legacy table)&lt;/div&gt;&lt;div&gt;ODS_STG.SYNC_UNMATCHED_&lt;/div&gt;&lt;div&gt;TRIGGER_LOGS&lt;/div&gt;&lt;div&gt;(Log table)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="2570" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l10bline" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2670" y="160" as="sourcePoint" />
+            <mxPoint x="2670" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB: credit_card_account.&#xa;returned_payments.NSF_FEE_JOURNAL" vertex="1">
+          <mxGeometry height="90" width="200" x="2800" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l11line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2900" y="160" as="sourcePoint" />
+            <mxPoint x="2900" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;verticalAlign=middle;" value="ACH Transaction Service" vertex="1">
+          <mxGeometry height="90" width="200" x="3030" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l13line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3130" y="160" as="sourcePoint" />
+            <mxPoint x="3130" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l13b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB: ach_payment_transaction.payment_transaction" vertex="1">
+          <mxGeometry height="90" width="200" x="3260" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l13bline" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3360" y="160" as="sourcePoint" />
+            <mxPoint x="3360" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Kafka: DEBIT_ACH_TRANSACTIONS_ALL_RETURN_PAYMENT_EVENTS&#xa;⚠ SAME NAME AS UNMATCHED TOPIC (l4) — verify: is this really the same topic, or a different one?" vertex="1">
+          <mxGeometry height="90" width="200" x="3490" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l14line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3590" y="160" as="sourcePoint" />
+            <mxPoint x="3590" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;verticalAlign=middle;" value="Payment Service" vertex="1">
+          <mxGeometry height="90" width="200" x="3720" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l15line" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3820" y="160" as="sourcePoint" />
+            <mxPoint x="3820" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l15b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=9;verticalAlign=middle;" value="DB: payments.payment_request" vertex="1">
+          <mxGeometry height="90" width="200" x="3950" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l15bline" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#888888;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4050" y="160" as="sourcePoint" />
+            <mxPoint x="4050" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s0" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="1. Return file dropped">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="200" as="sourcePoint" />
+            <mxPoint x="370" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s1" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="2. File received&amp;nbsp;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="228" as="sourcePoint" />
+            <mxPoint x="600" y="228" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s2" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="3. Match lookup (checkModernRecords)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="256" as="sourcePoint" />
+            <mxPoint x="830" y="256" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s3" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="4. Determine matched vs unmatched">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="284" as="sourcePoint" />
+            <mxPoint x="640" y="284" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s4" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="5. UNMATCHED: publish unmatched event">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="312" as="sourcePoint" />
+            <mxPoint x="1060" y="312" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s5" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="12. MATCHED: publish matched event (different topic)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="508" as="sourcePoint" />
+            <mxPoint x="1290" y="508" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s6" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="6. Consume unmatched event">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1060" y="340" as="sourcePoint" />
+            <mxPoint x="1520" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="7. Save unmatched">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1520" y="368" as="sourcePoint" />
+            <mxPoint x="1750" y="368" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s8" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="8. Publish legacy event&amp;nbsp;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1520" y="396" as="sourcePoint" />
+            <mxPoint x="1980" y="396" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s9" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="9. Sink connector picks up message">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980" y="424" as="sourcePoint" />
+            <mxPoint x="2210" y="424" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s10" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="10. Write to ODS staging table">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2210" y="452" as="sourcePoint" />
+            <mxPoint x="2440" y="452" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s10b" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="11. Trigger:&lt;div&gt;ODS_STG.TRIG_INS_STAGE_MODERN_&lt;/div&gt;&lt;div&gt;ACH_RETURN_UNMATCHED&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2440" y="480" as="sourcePoint" />
+            <mxPoint x="2670" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s11" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="13. Consume matched event&amp;nbsp;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="536" as="sourcePoint" />
+            <mxPoint x="1520" y="536" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s12" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="14. Persist matched record">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1520" y="564" as="sourcePoint" />
+            <mxPoint x="2900" y="564" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nsfnote" parent="1" style="text;html=1;fontSize=9;fontStyle=2;align=left;fontColor=#666666;" value="NSF flow continues from here (JAMS-triggered batch, NSF fee calculation) — see separate diagram, ref SSPP-11614" vertex="1">
+          <mxGeometry height="20" width="900" x="1520" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="s16" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="15. Consume matched event ?">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="592" as="sourcePoint" />
+            <mxPoint x="3130" y="592" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s17" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="16. Update status to RETURNED">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3130" y="620" as="sourcePoint" />
+            <mxPoint x="3360" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s18" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="17. Publish status update ?">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3130" y="648" as="sourcePoint" />
+            <mxPoint x="3590" y="648" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s19" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;dashed=1;" value="18. Consume ?">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3590" y="676" as="sourcePoint" />
+            <mxPoint x="3820" y="676" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s20" edge="1" parent="1" style="html=1;endArrow=block;fontSize=9;" value="19. Update status to RETURNED">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3820" y="704" as="sourcePoint" />
+            <mxPoint x="4050" y="704" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1_cl3b3L6yZHlhgkjvas-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;Do we ever read from here?&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="1727" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="act_140" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="135" y="192" as="geometry" />
+        </mxCell>
+        <mxCell id="act_370" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="44" width="10" x="365" y="192" as="geometry" />
+        </mxCell>
+        <mxCell id="act_600" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="296" width="10" x="595" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="act_830" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="825" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="act_640" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="635" y="276" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1060" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="44" width="10" x="1055" y="304" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1290" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="100" width="10" x="1285" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1520" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="240" width="10" x="1515" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1750" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="1745" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="act_1980" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="44" width="10" x="1975" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="act_2210" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="44" width="10" x="2205" y="416" as="geometry" />
+        </mxCell>
+        <mxCell id="act_2440" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="44" width="10" x="2435" y="444" as="geometry" />
+        </mxCell>
+        <mxCell id="act_2670" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="2665" y="472" as="geometry" />
+        </mxCell>
+        <mxCell id="act_2900" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="2895" y="556" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3130" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="72" width="10" x="3125" y="584" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3360" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="3355" y="612" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3590" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="44" width="10" x="3585" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="act_3820" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="44" width="10" x="3815" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="act_4050" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;" vertex="1">
+          <mxGeometry height="20" width="10" x="4045" y="696" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
