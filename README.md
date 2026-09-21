@@ -1,7 +1,1 @@
-Trigger: ODS_STG.TRIG_INS_STAGE_MODERN_ACH_RETURN_UNMATCHED
-
-Fires on: INSERT into ODS_STG.STAGE_MODERN_ACH_RETURN_UNMATCHED
-
-Target legacy table: ACH.ACH_QUEUED_TRANSACTIONS
-
-Logs table: ODS_STG.SYNC_UNMATCHED_TRIGGER_LOGS
+End-to-end flow for ACH return payment processing, from file ingestion (S3 → ach-payments-service-partner) through match/unmatch determination. Unmatched records are saved and routed to legacy via Kafka Connect (ODS staging → legacy final table). Matched records are persisted to NSF_FEE_JOURNAL (NSF fee calculation detailed separately, ref SSPP-11614) and also relayed by ACH Transaction Service and Payment Service to update their respective transaction/payment records to RETURNED status. Includes known open items: topic-naming discrepancies pending verification, and the unresolved question of how the final NSF fee status is communicated back to Return Payments Processor.
