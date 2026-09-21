@@ -1,1 +1,7 @@
- ACH Transaction Service to consume Partner events from DEBIT_ACH_PARTNERS_ALL_RETURN_PAYMENT_EVENTS, store only MATCHED records and ignore unmatched and origin legacy, and publish MATCHED rows to Kafka3 (DEBIT_ACH_TRANSACTIONS_ALL_RETURN_PAYMENT_EVENTS)
+Trigger: ODS_STG.TRIG_INS_STAGE_MODERN_ACH_RETURN_UNMATCHED
+
+Fires on: INSERT into ODS_STG.STAGE_MODERN_ACH_RETURN_UNMATCHED
+
+Target legacy table: ACH.ACH_QUEUED_TRANSACTIONS
+
+Logs table: ODS_STG.SYNC_UNMATCHED_TRIGGER_LOGS
